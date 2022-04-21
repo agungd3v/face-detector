@@ -9,8 +9,8 @@ let height = 300
 const startSteam = () => {
   console.log("START STEAM");
   navigator.mediaDevices.getUserMedia({
-      video: {width, height},
-      audio : false
+    video: {width, height},
+    audio : false
   }).then((steam) => {video.srcObject = steam})
 }
 
