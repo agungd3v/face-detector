@@ -1,7 +1,7 @@
 let options, reference;
 
 let withBoxes = true
-let scoreThreshold = 0.5
+let scoreThreshold = 0.48
 let inputSize = 224
 
 function resizeCanvasAndResults(dimensions, canvas, results) {
@@ -44,8 +44,11 @@ async function onPlay() {
     drawLandmarks(videoEl, overlay, [result], withBoxes)
 
     if (reference) {
+      const matchEl = document.querySelector('#matching')
       const bestMatch = faceMatcher.findBestMatch(reference.descriptor)
+
       document.querySelector('#rss').textContent = bestMatch._distance
+      matchEl.textContent = bestMatch._distance < scoreThreshold ? true : false
     }
   }
 
